@@ -1,0 +1,26 @@
+{
+  "name": "@aricart/nd-progress",
+  "version": "0.0.1",
+  "exports": {
+    ".": "./src/mod.ts"
+  },
+  "publish": {
+    "exclude": [
+      "./.npmrc",
+      "./build/",
+      "./examples/",
+      "./import_map.json",
+      "./node_modules/",
+      "./package-lock.json",
+      "./package.json",
+      "./tests/",
+      "./tsconfig.json",
+      "./typedoc.json",
+      "./unsafe_tests/"
+    ]
+  },
+  "imports": {
+    "@deno-library/progress": "jsr:@deno-library/progress@^1.5.1",
+    "cli-progress": "npm:cli-progress@^3.12.0"
+  }
+}
