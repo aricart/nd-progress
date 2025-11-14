@@ -54,7 +54,9 @@ const timer = setInterval(async () => {
 Creates a new progress bar with the specified maximum value.
 
 **Parameters:**
-- `max` - the maximum value for the progress bar (must be a positive finite number)
+
+- `max` - the maximum value for the progress bar (must be a positive finite
+  number)
 
 **Returns:** A Promise that resolves to a `Progress` instance
 
@@ -63,13 +65,17 @@ Creates a new progress bar with the specified maximum value.
 ### Progress Interface
 
 #### `update(n: number): Promise<void>`
+
 Updates the progress bar to the specified value.
 
 #### `message(s: string): Promise<void>`
+
 Writes a message on top of the progress bar.
 
 #### `log(s: string): Promise<void>`
+
 Logs a message with a timestamp.
 
 #### `stop(): void`
+
 Stops the progress bar.
