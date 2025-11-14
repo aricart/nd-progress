@@ -3,10 +3,17 @@
   "specifiers": {
     "jsr:@deno-library/progress@^1.5.1": "1.5.1",
     "jsr:@std/assert@*": "1.0.15",
+    "jsr:@std/assert@0.224": "0.224.0",
     "jsr:@std/assert@1": "1.0.15",
+    "jsr:@std/flags@*": "0.224.0",
     "jsr:@std/fmt@1.0.3": "1.0.3",
+    "jsr:@std/fs@*": "1.0.19",
+    "jsr:@std/internal@^1.0.10": "1.0.12",
     "jsr:@std/internal@^1.0.12": "1.0.12",
+    "jsr:@std/internal@^1.0.9": "1.0.12",
     "jsr:@std/io@0.225.0": "0.225.0",
+    "jsr:@std/path@*": "1.1.2",
+    "jsr:@std/path@^1.1.1": "1.1.2",
     "npm:cli-progress@^3.12.0": "3.12.0"
   },
   "jsr": {
@@ -17,20 +24,42 @@
         "jsr:@std/io"
       ]
     },
+    "@std/assert@0.224.0": {
+      "integrity": "8643233ec7aec38a940a8264a6e3eed9bfa44e7a71cc6b3c8874213ff401967f"
+    },
     "@std/assert@1.0.15": {
       "integrity": "d64018e951dbdfab9777335ecdb000c0b4e3df036984083be219ce5941e4703b",
       "dependencies": [
-        "jsr:@std/internal"
+        "jsr:@std/internal@^1.0.12"
+      ]
+    },
+    "@std/flags@0.224.0": {
+      "integrity": "d40eaf58c356b2e1313c6d4e62dc28b614aad2ddae6f5ff72a969e0b1f5ad689",
+      "dependencies": [
+        "jsr:@std/assert@0.224"
       ]
     },
     "@std/fmt@1.0.3": {
       "integrity": "97765c16aa32245ff4e2204ecf7d8562496a3cb8592340a80e7e554e0bb9149f"
+    },
+    "@std/fs@1.0.19": {
+      "integrity": "051968c2b1eae4d2ea9f79a08a3845740ef6af10356aff43d3e2ef11ed09fb06",
+      "dependencies": [
+        "jsr:@std/internal@^1.0.9",
+        "jsr:@std/path@^1.1.1"
+      ]
     },
     "@std/internal@1.0.12": {
       "integrity": "972a634fd5bc34b242024402972cd5143eac68d8dffaca5eaa4dba30ce17b027"
     },
     "@std/io@0.225.0": {
       "integrity": "c1db7c5e5a231629b32d64b9a53139445b2ca640d828c26bf23e1c55f8c079b3"
+    },
+    "@std/path@1.1.2": {
+      "integrity": "c0b13b97dfe06546d5e16bf3966b1cadf92e1cc83e56ba5476ad8b498d9e3038",
+      "dependencies": [
+        "jsr:@std/internal@^1.0.10"
+      ]
     }
   },
   "npm": {
@@ -72,7 +101,8 @@
     ],
     "packageJson": {
       "dependencies": [
-        "npm:cli-progress@^3.12.0"
+        "npm:cli-progress@^3.12.0",
+        "npm:typescript@5"
       ]
     }
   }
