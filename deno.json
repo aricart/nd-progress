@@ -1,6 +1,6 @@
 {
   "name": "@aricart/nd-progress",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "exports": {
     ".": "./src/mod.ts"
   },
