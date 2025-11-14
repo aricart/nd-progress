@@ -1,14 +1,16 @@
-import { Progress } from "./progress.ts";
+import type { Progress } from "./progress.ts";
 import cliProgress from "cli-progress";
 
 class CliProgressAdapter implements Progress {
-  progress: typeof cliProgress.SingleBar;
+  progress: InstanceType<typeof cliProgress.SingleBar>;
   current: number;
   max: number;
+  running: boolean;
 
   constructor(max: number) {
     this.max = max;
     this.current = 0;
+    this.running = false;
     this.createProgress();
   }
 
@@ -17,7 +19,10 @@ class CliProgressAdapter implements Progress {
   }
 
   stop(): void {
-    this.progress.stop();
+    if (this.running) {
+      this.progress.stop();
+      this.running = false;
+    }
   }
 
   createProgress(): void {
@@ -29,14 +34,21 @@ class CliProgressAdapter implements Progress {
       hideCursor: true,
     }, cliProgress.Presets.legacy);
     this.progress.start(this.max, this.current);
+    this.running = true;
   }
 
   message(s: string): Promise<void> {
-    this.stop();
-    console.log(`\r${s}`);
-    this.createProgress();
+    // temporarily stop the bar to print message, then resume
+    if (this.running) {
+      this.progress.stop();
+      console.log(`\r${s}`);
+      this.progress.start(this.max, this.current);
+    } else {
+      console.log(s);
+    }
     return Promise.resolve();
   }
+
   update(n: number): Promise<void> {
     this.progress.update(n);
     this.current = n;

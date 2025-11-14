@@ -1,4 +1,4 @@
-import { Progress } from "./progress.ts";
+import type { Progress } from "./progress.ts";
 import ProgressBar from "@deno-library/progress";
 
 class ProgressBarAdapter implements Progress {
