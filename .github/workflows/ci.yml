@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    tags:
+      - "*"
+    branches:
+      - "*"
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-deno:
+    strategy:
+      matrix:
+        deno-version: [2.x]
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Use Deno Version ${{ matrix.deno-version }}
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: ${{ matrix.deno-version }}
+
+      - name: Lint module
+        run: deno fmt --check
+
+      - name: Run Deno tests
+        env:
+          CI: true
+        run: deno test tests/deno_test.ts
+
+      - name: Check types
+        run: deno check src/mod.ts
+
+  test-node:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "latest"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Node.js tests
+        env:
+          CI: true
+        run: npm test

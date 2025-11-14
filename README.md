@@ -8,20 +8,21 @@ limited, as the intention is to provide cross-runtime support for a progress
 bar.
 
 ```typescript
-import { getProgress } from "jsr:@aricart/nd-progress";
+import { progressFactory } from "jsr:@aricart/nd-progress";
 
-const progress = await getProgress(100);
+const progress = await progressFactory(100);
 let n = 0;
 const timer = setInterval(async () => {
-  await progress.update(n++);
+  await progress.update(++n);
   if (n % 23 === 0) {
-    progress.log(`hi ${n}`);
+    await progress.log(`hi ${n}`);
   }
   if (n % 42 === 0) {
-    progress.console(`hello ${n}`);
+    await progress.message(`hello ${n}`);
   }
   if (n === 100) {
     clearInterval(timer);
+    progress.stop();
   }
-}, 1000);
+}, 100);
 ```
