@@ -1,16 +1,45 @@
 {
-  "name": "nd-progress",
+  "name": "@aricart/nd-progress",
   "version": "1.0.1",
   "description": "A progress bar wrapper that runs in Deno and Node.js",
-  "main": "index.js",
+  "main": "lib/mod.js",
+  "types": "lib/mod.d.ts",
   "type": "module",
+  "scripts": {
+    "clean": "rm -rf ./build ./lib",
+    "preprocess": "npm run clean && deno run -A ./bin/cjs-fix-imports.ts -o ./build/src ./src",
+    "build": "npm run preprocess && tsc",
+    "prepublishOnly": "npm run build",
+    "test": "node tests/node_test.mjs"
+  },
+  "keywords": [
+    "progress",
+    "progress-bar",
+    "deno",
+    "node",
+    "cross-platform",
+    "cross-runtime",
+    "cli"
+  ],
+  "author": "Alberto Ricart",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aricart/nd-progress.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aricart/nd-progress/issues"
+  },
+  "homepage": "https://github.com/aricart/nd-progress#readme",
+  "files": [
+    "lib",
+    "README.md",
+    "LICENSE"
+  ],
   "dependencies": {
     "cli-progress": "^3.12.0"
   },
-  "scripts": {
-    "test": "node tests/node_test.mjs"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
 }
