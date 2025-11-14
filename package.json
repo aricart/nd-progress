@@ -1,6 +1,6 @@
 {
   "name": "nd-progress",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A progress bar wrapper that runs in Deno and Node.js",
   "main": "index.js",
   "type": "module",
